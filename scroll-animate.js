@@ -1,25 +1,35 @@
-// JS
-const scrollers = document.querySelectorAll(".scroller");
+// احرص على تنفيذ الكود بعد تحميل كل الصور والعناصر
+window.addEventListener("load", () => {
+  const scrollers = document.querySelectorAll(".scroller");
 
-// If a user hasn't opted in for reduced motion, then we add the animation
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  addAnimation();
-}
+  // إذا لم يختار المستخدم reduced motion
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    addAnimation(scrollers);
+  }
+});
 
-function addAnimation() {
+function addAnimation(scrollers) {
   scrollers.forEach((scroller) => {
-    // add data-animated="true" to every `.scroller` on the page
+    // أضف data-animated="true"
     scroller.setAttribute("data-animated", true);
 
-    // Make an array from the elements within `.scroller-inner`
     const scrollerInner = scroller.querySelector(".scroller__inner");
     const scrollerContent = Array.from(scrollerInner.children);
 
-    // For each item in the array, clone it
+    // عمل نسخة من كل عنصر وإضافتها
     scrollerContent.forEach((item) => {
       const duplicatedItem = item.cloneNode(true);
       duplicatedItem.setAttribute("aria-hidden", true);
       scrollerInner.appendChild(duplicatedItem);
     });
+
+    // 🔹 حل مشكلة ظهور الشعارات على الموبايل
+    // إجبار المتصفح على إعادة حساب العرض (reflow)
+    scrollerInner.scrollLeft = 0;
+
+    // 🔹 اختياري: تأخير بدء الأنيميشن قليلًا حتى تتأكد الصور محملة
+    setTimeout(() => {
+      scrollerInner.style.animationPlayState = "running";
+    }, 50);
   });
 }
