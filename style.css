@@ -440,7 +440,7 @@ body {
 
 /* optional styling for logos */
 .scroller__inner img {
-  height: 100px;
+  height: 60px;
   object-fit: contain;
 }
 
@@ -1093,6 +1093,7 @@ body {
 .footer-rights {
   color: var(--color-gray);
 }
+
 
 
 
