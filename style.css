@@ -384,54 +384,6 @@ body {
 /* =========================
    Logos Carousel
 ========================= */
-.logos {
-  overflow: hidden;
-  padding: 2px 0;
-  border-top: #111827;
-  background: var(--color-white);
-  white-space: nowrap;
-  position: relative;
-}
-
-.logos:before,
-.logos:after {
-  position: absolute;
-  top: 0;
-  width: 6rem;
-  height: 100%;
-  content: "";
-  z-index: 2;
-}
-
-.logos:before {
-  left: 0;
-  background: var(--gradient-left);
-}
-
-.logos:after {
-  right: 0;
-  background: var(--gradient-right);
-}
-
-.logos-images {
-  display: flex;
-  animation: 15s slide infinite linear;
-  min-width: max-content;
-}
-
-.logos-images img {
-  height: 70px;
-  margin: 0 20px;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
 
 /* ===== Services Section ===== */
 #services {
@@ -714,8 +666,6 @@ body {
     padding: 1rem;
   }
 }
-
-section.logos-section .logos { box-shadow: 0 16px 36px rgba(0,0,0,.22); }
 
 /* Fade-up effect for .child-box and .client-box */
 .child-box, .client-box {
@@ -1084,3 +1034,4 @@ section.logos-section .logos { box-shadow: 0 16px 36px rgba(0,0,0,.22); }
 .footer-rights {
   color: var(--color-gray);
 }
+
