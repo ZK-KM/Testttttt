@@ -1,8 +1,7 @@
-// احرص على تنفيذ الكود بعد تحميل كل الصور والعناصر
+// ✅ تنفيذ الكود بعد تحميل الصفحة وكل الصور
 window.addEventListener("load", () => {
   const scrollers = document.querySelectorAll(".scroller");
 
-  // إذا لم يختار المستخدم reduced motion
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     addAnimation(scrollers);
   }
@@ -10,26 +9,26 @@ window.addEventListener("load", () => {
 
 function addAnimation(scrollers) {
   scrollers.forEach((scroller) => {
-    // أضف data-animated="true"
     scroller.setAttribute("data-animated", true);
 
     const scrollerInner = scroller.querySelector(".scroller__inner");
     const scrollerContent = Array.from(scrollerInner.children);
 
-    // عمل نسخة من كل عنصر وإضافتها
-    scrollerContent.forEach((item) => {
-      const duplicatedItem = item.cloneNode(true);
-      duplicatedItem.setAttribute("aria-hidden", true);
-      scrollerInner.appendChild(duplicatedItem);
-    });
+    // ✅ تكرار المحتوى مرتين لحل مشكلة الغليتش
+    for (let i = 0; i < 2; i++) {
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        duplicatedItem.setAttribute("aria-hidden", true);
+        scrollerInner.appendChild(duplicatedItem);
+      });
+    }
 
-    // 🔹 حل مشكلة ظهور الشعارات على الموبايل
-    // إجبار المتصفح على إعادة حساب العرض (reflow)
+    // ✅ إجبار المتصفح على إعادة الحساب (reflow)
     scrollerInner.scrollLeft = 0;
 
-    // 🔹 اختياري: تأخير بدء الأنيميشن قليلًا حتى تتأكد الصور محملة
+    // ✅ تأخير بسيط لتفادي مشاكل تحميل الصور
     setTimeout(() => {
       scrollerInner.style.animationPlayState = "running";
-    }, 50);
+    }, 100);
   });
 }
